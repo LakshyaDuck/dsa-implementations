@@ -2,3 +2,7 @@
 
 
 This repo is for implementations of algorithms i learn in mit 6,006.
+
+## Algo 1
+
+Merge sorts
