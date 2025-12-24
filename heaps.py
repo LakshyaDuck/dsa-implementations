@@ -10,16 +10,20 @@ class Heap:
     def right(self, i):
         return 2*i + 2
     def root(self):
+        if self.size == 0:
+            raise IndexError("Heap is empty")
         return self.heap[0]
     def height(self):
-        return math.log2(self.size)
+        if self.size == 0:
+            return 0
+        return int(math.log2(self.size))
     def max_heapify(self, i):
         l = self.left(i)
         r = self.right(i)
         largest = i
-        if self.size < l and self.heap[i] < self.heap[l]:
+        if l < self.size and self.heap[i] < self.heap[l]:
             largest = l
-        if self.size < r and self.heap[largest] < self.heap[r]:
+        if r < self.size and self.heap[largest] < self.heap[r]:
             largest = r
         if largest != i:
             self.heap[i], self.heap[largest] = self.heap[largest], self.heap[i]
@@ -33,4 +37,5 @@ class Heap:
         for i in range(n):
             self.heap[0], self.heap[self.size - 1] = self.heap[self.size - 1], self.heap[0]
             self.size -= 1
-            self.max_heapify(0, self.size)
+            self.max_heapify(0)
+    
