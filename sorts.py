@@ -1,8 +1,12 @@
 from time import perf_counter_ns
 from random import shuffle
+from sortinghelper import *
 
 def selection_sort(arr):
-    pass
+    len = len(arr)
+    for i in range(len - 1):
+        min = find_min(arr, i)
+        swap(arr, i, min)
 
 def quick_sort(arr):
     pass
@@ -11,16 +15,22 @@ def merge_sort(arr):
     pass
 
 def insertion_sort(arr):
-    pass
+    for i in range(1, len(arr) + 1):
+        pos = identify_position(arr, i)
+        if pos != i:
+            insert_at_from(arr, pos, i)
 
 def counting_sort(arr):
+    pass
+
+def bst_sort():
     pass
 
 def radix_sort(arr):
     pass
 
 def heap_sort(arr):
-    pass
+    return heap_sort(arr)
 
 def avl_sort(arr):
     pass
@@ -31,56 +41,99 @@ def main():
     array_condition = input("Array Condition: ")
     algorithm = input("First letter of algorithm or all: ")
     
-    array = list(range(size))
+    arr = list(range(size))
     
     if array_condition == "1":
-        shuffle(array)
+        shuffle(arr)
     elif array_condition == "3":
-        array.reverse()
+        arr.reverse()
     elif array_condition not in ["1", "2", "3"]:
         print("Wrong input")
         exit(1)
-    
+
+    output = input("Output 'p' for only performance and 'a' for sorted array with performance: ")
+
     if algorithm == "all" or algorithm == "s":
+        array = arr.copy()
         t0 = perf_counter_ns()
         selection_sort(array)
         t1 = perf_counter_ns()
-        time_taken_s = t1-t0
+        time_taken = t1-t0
+        if output == "a":
+            print(array)
+        print(time_taken)
     if algorithm == "all" or algorithm == "a":
+        array = arr.copy()
         t0 = perf_counter_ns()
         avl_sort(array)
         t1 = perf_counter_ns()
-        time_taken_a = t1-t0
+        time_taken = t1-t0
+        if output == "a":
+            print(array)
+        print(time_taken)
     if algorithm == "all" or algorithm == "i":
+        array = arr.copy()
         t0 = perf_counter_ns()
         insertion_sort(array)
         t1 = perf_counter_ns()
-        time_taken_i = t1-t0
+        time_taken = t1-t0
+        if output == "a":
+            print(array)
+        print(time_taken)
     if algorithm == "all" or algorithm == "h":
+        array = arr.copy()
         t0 = perf_counter_ns()
         heap_sort(array)
         t1 = perf_counter_ns()
-        time_taken_h = t1-t0
+        time_taken = t1-t0
+        if output == "a":
+            print(array)
+        print(time_taken)
     if algorithm == "all" or algorithm == "q":
+        array = arr.copy()
         t0 = perf_counter_ns()
         quick_sort(array)
         t1 = perf_counter_ns()
-        time_taken_q = t1-t0
+        time_taken = t1-t0
+        if output == "a":
+            print(array)
+        print(time_taken)
     if algorithm == "all" or algorithm == "m":
+        array = arr.copy()
         t0 = perf_counter_ns()
         merge_sort(array)
         t1 = perf_counter_ns()
-        time_taken_m = t1-t0
+        time_taken = t1-t0
+        if output == "a":
+            print(array)
+        print(time_taken)
     if algorithm == "all" or algorithm == "c":
+        array = arr.copy()
         t0 = perf_counter_ns()
         counting_sort(array)
         t1 = perf_counter_ns()
-        time_taken_c = t1-t0
+        time_taken = t1-t0
+        if output == "a":
+            print(array)
+        print(time_taken)
     if algorithm == "all" or algorithm == "r":
+        array = arr.copy()
         t0 = perf_counter_ns()
         radix_sort(array)
         t1 = perf_counter_ns()
-        time_taken_r = t1-t0
-  
+        time_taken = t1-t0
+        if output == "a":
+            print(array)
+        print(time_taken)
+    if algorithm == "all" or algorithm == "b":
+        array = arr.copy()
+        t0 = perf_counter_ns()
+        bst_sort(array)
+        t1 = perf_counter_ns()
+        time_taken = t1-t0
+        if output == "a":
+            print(array)
+        print(time_taken)
+        
 
 main()
